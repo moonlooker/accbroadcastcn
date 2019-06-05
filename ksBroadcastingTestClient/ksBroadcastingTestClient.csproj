@@ -55,11 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Broadcasting\BroadcastingEventView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Broadcasting\EntryListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Broadcasting\LiveTimingCarViewModel.xaml">
+    <Page Include="Broadcasting\LiveTimingCarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,6 +95,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Broadcasting\BroadcastingEventView.xaml.cs">
+      <DependentUpon>BroadcastingEventView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Broadcasting\BroadcastingEventViewModel.cs" />
     <Compile Include="Broadcasting\BroadcastingViewModel.cs" />
     <Compile Include="Broadcasting\CameraSetViewModel.cs" />
     <Compile Include="Broadcasting\CameraViewModel.cs" />
@@ -101,8 +109,8 @@
     </Compile>
     <Compile Include="Broadcasting\HudPageViewModel.cs" />
     <Compile Include="Broadcasting\LapViewModel.cs" />
-    <Compile Include="Broadcasting\LiveTimingCarViewModel.xaml.cs">
-      <DependentUpon>LiveTimingCarViewModel.xaml</DependentUpon>
+    <Compile Include="Broadcasting\LiveTimingCarView.xaml.cs">
+      <DependentUpon>LiveTimingCarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Broadcasting\ReplayControlView.xaml.cs">
       <DependentUpon>ReplayControlView.xaml</DependentUpon>

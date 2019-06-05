@@ -1,6 +1,0 @@
-C:\Users\leonstone\source\repos\Sources\ksBroadcastingNetwork\bin\Debug\ksBroadcastingNetwork.dll
-C:\Users\leonstone\source\repos\Sources\ksBroadcastingNetwork\bin\Debug\ksBroadcastingNetwork.pdb
-C:\Users\leonstone\source\repos\Sources\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.csprojAssemblyReference.cache
-C:\Users\leonstone\source\repos\Sources\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.csproj.CoreCompileInputs.cache
-C:\Users\leonstone\source\repos\Sources\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.dll
-C:\Users\leonstone\source\repos\Sources\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.pdb
