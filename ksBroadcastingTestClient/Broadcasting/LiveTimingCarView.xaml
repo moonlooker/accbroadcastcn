@@ -5,24 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ksBroadcastingTestClient.Broadcasting"
              mc:Ignorable="d" 
-             d:DesignHeight="70" d:DesignWidth="800">
+             d:DesignHeight="70" d:DesignWidth="950">
 
         <!-- Data -->
     <StackPanel>
         <StackPanel Orientation="Horizontal" Background="{Binding RowBackground}">
-        <TextBlock Width="30" Text="{Binding Position}" Style="{StaticResource RowSizedText}" FontWeight="Bold" Foreground="{Binding RowForeground}" />
-        <TextBlock Width="60" Text="{Binding RaceNumber, StringFormat={}#{0}}" Style="{StaticResource RowSizedText}" TextAlignment="Center" Foreground="{Binding RowForeground}" />
-        <TextBlock Width="60" Text="{Binding CurrentDriver.ShortName}" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
-        <StackPanel Width="150" Orientation="Vertical">
+        <TextBlock Width="50" Text="{Binding Position}" Style="{StaticResource RowSizedText}" FontWeight="Bold" Foreground="{Binding RowForeground}" />
+        <TextBlock Width="55" Text="{Binding RaceNumber, StringFormat={}#{0}}" Style="{StaticResource RowSizedText}" TextAlignment="Center" Foreground="{Binding RowForeground}" />
+        <TextBlock Width="50" Text="{Binding CurrentDriver.ShortName}" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
+        <StackPanel Width="130" Orientation="Vertical">
             <TextBlock Text="{Binding TeamName}" Style="{StaticResource HalfSizeText}" Foreground="{Binding RowForeground}" />
             <TextBlock Text="{Binding CurrentDriver.DisplayName}" Style="{StaticResource HalfSizeText}" FontWeight="Bold"  Foreground="{Binding RowForeground}" />
         </StackPanel>
 
         <TextBlock Width="50" Text="{Binding Laps}" Style="{StaticResource RowSizedText}" TextAlignment="Right" Foreground="{Binding RowForeground}" />
         <TextBlock Width="50" Text="{Binding LocationHint}" TextAlignment="Center" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
-        <TextBlock Width="40" Text="{Binding DeltaString}" Foreground="{Binding DeltaColor}" TextAlignment="Center" Style="{StaticResource RowSizedText}" />
+        <TextBlock Width="121" Text="{Binding DeltaString}" Foreground="{Binding DeltaColor}" TextAlignment="Center" Style="{StaticResource RowSizedText}" />
 
-        <StackPanel Width="75" Orientation="Vertical">
+        <StackPanel Width="98" Orientation="Vertical">
             <TextBlock Text="{Binding CurrentLap.LaptimeString}" Style="{StaticResource 2ThirdSizeText}" HorizontalAlignment="Right" Foreground="{Binding RowForeground}" />
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -36,7 +36,7 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Width="75" Orientation="Vertical">
+        <StackPanel Width="90" Orientation="Vertical">
             <TextBlock Text="{Binding LastLap.LaptimeString}" Style="{StaticResource 2ThirdSizeText}" HorizontalAlignment="Right" Foreground="{Binding RowForeground}" />
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -50,7 +50,7 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Width="75" Orientation="Vertical">
+        <StackPanel Width="103" Orientation="Vertical">
             <TextBlock Text="{Binding BestLap.LaptimeString}" Style="{StaticResource 2ThirdSizeText}" HorizontalAlignment="Right" Foreground="{Binding RowForeground}" />
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -63,7 +63,9 @@
                 <TextBlock Text="{Binding BestLap.Split2String}" TextAlignment="Right" Style="{StaticResource 1ThirdSizeText}"  Grid.Column="2" Foreground="{Binding RowForeground}" />
             </Grid>
         </StackPanel>
-    </StackPanel>
+            <TextBlock Width="50" Text="{Binding Gear}" Style="{StaticResource RowSizedText}" TextAlignment="Center" Foreground="{Binding RowForeground}" />
+            <TextBlock Width="110" Text="{Binding Kmh}" TextAlignment="Center" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
+        </StackPanel>
         <TextBlock Text="{Binding GapText, StringFormat=N0}" Foreground="{Binding GapColor}" />
     </StackPanel>
 </UserControl>

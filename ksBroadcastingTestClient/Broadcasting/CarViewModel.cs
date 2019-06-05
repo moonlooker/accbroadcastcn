@@ -151,13 +151,13 @@ namespace ksBroadcastingTestClient.Broadcasting
 
             // The location hint will combine stuff like pits, in/outlap
             if (CarLocation == CarLocationEnum.PitEntry)
-                LocationHint = "InPit";
+                LocationHint = "InP";//InPit
             else if (CarLocation == CarLocationEnum.Pitlane)
                 LocationHint = "PIT";
             else if (CarLocation == CarLocationEnum.PitExit)
-                LocationHint = "OutPit";
+                LocationHint = "OutP";//OutPit
             else if (CarLocation == CarLocationEnum.Track)
-                LocationHint = "OnTrack";
+                LocationHint = "OnT";//OnTrack
             else
                 LocationHint = CurrentLap?.LapHint;
         }

@@ -34,7 +34,7 @@
                 <TextBlock Width="90" Text="最后圈速" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Driver's last laptime, splits, in/outlap hint" />
                 <TextBlock Width="103" Text="最快圈速" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
                 <TextBlock Width="50" Text="档位" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
-                <TextBlock Width="110" Text="时速(Kmh)" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
+                <TextBlock Width="110" Text="时速(Km/h)" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
             </StackPanel>
 
             <ItemsControl Name="listViewCars" ItemsSource="{Binding Source={StaticResource src}}">

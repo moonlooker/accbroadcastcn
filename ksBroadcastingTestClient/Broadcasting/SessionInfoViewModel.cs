@@ -70,11 +70,11 @@ namespace ksBroadcastingTestClient.Broadcasting
             else
                 CloudInfo = "末日";//World's end
 
-            TempInfo = $"{CloudInfo},环境温度:{update.AmbientTemp} °C ,赛道温度:{update.TrackTemp} °C";
+            TempInfo = $"{CloudInfo}, 环境温度: {update.AmbientTemp} °C , 赛道温度: {update.TrackTemp} °C";
 
 
             if (update.RainLevel < 0.1 && update.Wetness < 0.1)
-                RainInfo = $"晴朗";//Clear
+                RainInfo = $"无";//Clear
             else
                 RainInfo = $"{update.RainLevel:P0} 降水等级, {update.Wetness:P0} 湿度";// rain wet
 
