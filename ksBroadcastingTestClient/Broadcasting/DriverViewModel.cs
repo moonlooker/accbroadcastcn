@@ -13,22 +13,16 @@ namespace ksBroadcastingTestClient.Broadcasting
         public int DriverIndex { get; }
         public string FirstName { get => Get<string>(); private set => Set(value); }
         public string LastName { get => Get<string>(); private set => Set(value); }
-        public string NickName { get => Get<string>(); private set => Set(value); }
         public string ShortName { get => Get<string>(); private set => Set(value); }
         public string DisplayName { get => Get<string>(); private set => Set(value); }
         public DriverCategory Category { get => Get<DriverCategory>(); private set => Set(value); }
 
 
-        public DriverViewModel(ushort driverIndex)
+        public DriverViewModel(DriverInfo driverUpdate, int driverIndex)
         {
             DriverIndex = driverIndex;
-        }
-
-        internal void Update(DriverInfo driverUpdate)
-        {
             FirstName = driverUpdate.FirstName;
             LastName = driverUpdate.LastName;
-            NickName = driverUpdate.Nickname;
             ShortName = driverUpdate.ShortName;
             Category = driverUpdate.Category;
 
@@ -38,7 +32,7 @@ namespace ksBroadcastingTestClient.Broadcasting
             if (displayName.Length > 35)
                 displayName = $"{LastName}".Trim();
             if (displayName.Length > 35)
-                displayName = $"{LastName.Substring(0,33)}...".Trim();
+                displayName = $"{LastName.Substring(0, 33)}...".Trim();
 
             if (string.IsNullOrEmpty(displayName))
                 displayName = "NO NAME";

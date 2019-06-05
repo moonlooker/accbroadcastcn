@@ -22,12 +22,29 @@
                 <TextBox x:Name="txtPlayBeforeSeconds" Text="120" Width="40" TextAlignment="Right" Height="21" Canvas.Left="72" Canvas.Top="64" RenderTransformOrigin="1.321,1.998" />
                 <!--<TextBlock Text="min, duration:" Height="28" Canvas.Left="117" Canvas.Top="65" />
                 <TextBox Text="120" Width="40" TextAlignment="Right" Height="20" RenderTransformOrigin="0.483,3.466" Canvas.Left="202" Canvas.Top="64" />-->
-                <TextBlock Text="s" Height="28" Canvas.Left="247" Canvas.Top="64" />
-                <Button Content="回放" Command="{Binding PlayLiveReplay}" CommandParameter="{Binding Text, ElementName=txtPlayBeforeSeconds}" Width="100" Height="28" Canvas.Left="267" Canvas.Top="59" />
+                <TextBlock Text="s" Height="28" Canvas.Left="120" Canvas.Top="64" />
+                <Button Content="开始回放" Command="{Binding PlayLiveReplay}" CommandParameter="{Binding Text, ElementName=txtPlayBeforeSeconds}" Width="100" Height="28" Canvas.Left="140" Canvas.Top="59" />
             </Canvas>
         </GroupBox>
         <!-- Event List -->
-        <GroupBox Header="Highlights" Grid.Column="0" Grid.Row="1">
+        <GroupBox Header="Highlights" Grid.Column="1" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding BroadcastingEvents}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel  Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:BroadcastingEventView Margin="0,10,0,0" >
+                            <local:BroadcastingEventView.InputBindings>
+                                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=PlayReplayCommand}" />
+                            </local:BroadcastingEventView.InputBindings>
+                        </local:BroadcastingEventView>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </GroupBox>
     </Grid>
 </UserControl>

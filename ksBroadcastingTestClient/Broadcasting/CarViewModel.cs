@@ -16,8 +16,6 @@ namespace ksBroadcastingTestClient.Broadcasting
         public int RaceNumber { get => Get<int>(); private set => Set(value); }
         public int CarModelEnum { get => Get<int>(); private set => Set(value); }
         public string TeamName { get => Get<string>(); private set => Set(value); }
-        public string TeamCarName { get => Get<string>(); private set => Set(value); }
-        public string CarModelName { get => Get<string>(); private set => Set(value); }
         public int CupCategoryEnum { get => Get<int>(); private set => Set(value); }
         public DriverViewModel CurrentDriver { get => Get<DriverViewModel>(); private set => Set(value); }
 
@@ -45,7 +43,36 @@ namespace ksBroadcastingTestClient.Broadcasting
 
         public Brush RowForeground { get => Get<Brush>(); private set => Set(value); }
         public Brush RowBackground { get => Get<Brush>(); private set => Set(value); }
+        public float GapFrontMeters { get => Get<float>(); set
+            {
+                if(Set(value))
+                { 
+                    NotifyUpdate(nameof(GapText));
+                    NotifyUpdate(nameof(GapColor));
+                }
+            }
+        }
 
+        public string GapText {
+            get {
+                if (Kmh < 10)
+                    return "Gap: ---";
+                return $"Gap: {GapFrontMeters / Kmh * 3.6:F1}s ⇅";
+            }
+        }
+        public Brush GapColor {
+            get {
+                if (Kmh < 10)
+                    return Brushes.Gray;
+                var seconds = GapFrontMeters / Kmh * 3.6;
+                if (seconds < 0.5)
+                    return Brushes.Red;
+                if (seconds < 2.0)
+                    return Brushes.DarkOrange;
+
+                return Brushes.Black;
+            }
+        }
 
         public CarViewModel(ushort carIndex)
         {
@@ -57,22 +84,17 @@ namespace ksBroadcastingTestClient.Broadcasting
             RaceNumber = carUpdate.RaceNumber;
             CarModelEnum = carUpdate.CarModelType;
             TeamName = carUpdate.TeamName;
-            TeamCarName = carUpdate.TeamCarName;
-            CarModelName = carUpdate.DisplayName;
             CupCategoryEnum = carUpdate.CupCategory;
 
-            foreach (var driverUpdate in carUpdate.Drivers)
+            if(carUpdate.Drivers.Count != Drivers.Count)
             {
-                var driverVM = Drivers.SingleOrDefault(x => x.DriverIndex == driverUpdate.DriverIndex);
-                if (driverVM == null)
+                Drivers.Clear();
+                int driverIndex = 0;
+                foreach(DriverInfo driver in carUpdate.Drivers)
                 {
-                    // This one is new!
-                    driverVM = new DriverViewModel(driverUpdate.DriverIndex);
-                    Drivers.Add(driverVM);
-                    NotifyUpdate(nameof(InactiveDrivers));
+                    Drivers.Add(new DriverViewModel(driver, driverIndex++));
                 }
-
-                driverVM.Update(driverUpdate);
+                NotifyUpdate(nameof(InactiveDrivers));
             }
         }
 

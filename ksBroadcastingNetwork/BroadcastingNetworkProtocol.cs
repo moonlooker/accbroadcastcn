@@ -1,6 +1,7 @@
 ﻿using ksBroadcastingNetwork.Structs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -32,14 +33,16 @@ namespace ksBroadcastingNetwork
         ENTRY_LIST = 4,
         ENTRY_LIST_CAR = 6,
         TRACK_DATA = 5,
+        BROADCASTING_EVENT = 7
     }
 
     public class BroadcastingNetworkProtocol
     {
-        public const int BROADCASTING_PROTOCOL_VERSION = 2;
+        public const int BROADCASTING_PROTOCOL_VERSION = 3;
         private string ConnectionIdentifier { get; }
         private SendMessageDelegate Send { get; }
         public int ConnectionId { get; private set; }
+        public float TrackMeters { get; private set; }
 
         internal delegate void SendMessageDelegate(byte[] payload);
 
@@ -59,6 +62,10 @@ namespace ksBroadcastingNetwork
 
         public delegate void RealtimeCarUpdateDelegate(string sender, RealtimeCarUpdate carUpdate);
         public event RealtimeCarUpdateDelegate OnRealtimeCarUpdate;
+
+        public delegate void BroadcastingEventDelegate(string sender, BroadcastingEvent evt);
+        public event BroadcastingEventDelegate OnBroadcastingEvent;
+        
 
 
         #endregion
@@ -113,59 +120,44 @@ namespace ksBroadcastingNetwork
                     {
                         _entryListCars.Clear();
 
-                        var driverIndexes = new List<ushort>();
-
                         var connectionId = br.ReadInt32();
                         var carEntryCount = br.ReadUInt16();
                         for (int i = 0; i < carEntryCount; i++)
                         {
                             _entryListCars.Add(new CarInfo(br.ReadUInt16()));
                         }
-
-                        var driverEntryCount = br.ReadUInt16();
-                        for (int i = 0; i < driverEntryCount; i++)
-                        {
-                            driverIndexes.Add(br.ReadUInt16());
-                        }
                     }
                     break;
                 case InboundMessageTypes.ENTRY_LIST_CAR:
                     {
                         
-                        var carIndex = br.ReadUInt16();
+                        var carId = br.ReadUInt16();
 
-                        var carInfo = _entryListCars.SingleOrDefault(x => x.CarIndex == carIndex);
+                        var carInfo = _entryListCars.SingleOrDefault(x => x.CarIndex == carId);
                         if(carInfo == null)
                         {
-                            System.Diagnostics.Debug.WriteLine($"Entry list update for unknown carIndex {carIndex}");
+                            System.Diagnostics.Debug.WriteLine($"Entry list update for unknown carIndex {carId}");
                             break;
                         }
 
                         carInfo.CarModelType = br.ReadByte(); // Byte sized car model
                         carInfo.TeamName = ReadString(br);
                         carInfo.RaceNumber = br.ReadInt32();
-                        carInfo.TeamCarName = ReadString(br);
-                        carInfo.DisplayName = ReadString(br);
                         carInfo.CupCategory = br.ReadByte(); // Cup: Overall/Pro = 0, ProAm = 1, Am = 2, Silver = 3, National = 4
+                        carInfo.CurrentDriverIndex = br.ReadByte();
 
                         // Now the drivers on this car:
                         var driversOnCarCount = br.ReadByte();
                         for (int di = 0; di < driversOnCarCount; di++)
                         {
-                            var driverIndex = br.ReadUInt16();
-                            var hasDriverInfo = br.ReadByte() > 0;
-                            if (hasDriverInfo)
-                            {
-                                var driverInfo = new DriverInfo(driverIndex);
+                            var driverInfo = new DriverInfo();
 
-                                driverInfo.FirstName = ReadString(br);
-                                driverInfo.LastName = ReadString(br);
-                                driverInfo.Nickname = ReadString(br);
-                                driverInfo.ShortName = ReadString(br);
-                                driverInfo.Category = (DriverCategory)br.ReadByte(); // Platinum = 3, Gold = 2, Silver = 1, Bronze = 0
+                            driverInfo.FirstName = ReadString(br);
+                            driverInfo.LastName = ReadString(br);
+                            driverInfo.ShortName = ReadString(br);
+                            driverInfo.Category = (DriverCategory)br.ReadByte(); // Platinum = 3, Gold = 2, Silver = 1, Bronze = 0
 
-                                carInfo.AddDriver(driverInfo);
-                            }
+                            carInfo.AddDriver(driverInfo);
                         }
 
                         OnEntrylistUpdate?.Invoke(ConnectionIdentifier, carInfo);
@@ -193,11 +185,9 @@ namespace ksBroadcastingNetwork
                         {
                             update.ReplaySessionTime = br.ReadSingle();
                             update.ReplayRemainingTime = br.ReadSingle();
-                            update.ReplayFocusedCar = br.ReadInt32();
                         }
 
-                        var timeOfDay = br.ReadUInt16();
-                        update.TimeOfDay = new TimeSpan(timeOfDay / 100, timeOfDay % 100, 0); ;
+                        update.TimeOfDay = TimeSpan.FromMilliseconds(br.ReadSingle());
                         update.AmbientTemp = br.ReadByte();
                         update.TrackTemp = br.ReadByte();
                         update.Clouds = br.ReadByte() / 10.0f;
@@ -215,6 +205,7 @@ namespace ksBroadcastingNetwork
 
                         carUpdate.CarIndex = br.ReadUInt16();
                         carUpdate.DriverIndex = br.ReadUInt16(); // Driver swap will make this change
+                        carUpdate.DriverCount = br.ReadByte();
                         carUpdate.Gear = br.ReadByte() - 2; // -2 makes the R -1, N 0 and the rest as-is
                         carUpdate.WorldPosX = br.ReadSingle();
                         carUpdate.WorldPosY = br.ReadSingle();
@@ -232,8 +223,9 @@ namespace ksBroadcastingNetwork
                         carUpdate.LastLap = ReadLap(br);
                         carUpdate.CurrentLap = ReadLap(br);
 
-                        if (!_entryListCars.Any(x=>x.CarIndex == carUpdate.CarIndex)
-                            || !_entryListCars.SelectMany(x=>x.Drivers).Any(x=>x.DriverIndex == carUpdate.DriverIndex))
+                        // the concept is: "don't know a car or driver? ask for an entry list update"
+                        var carEntry = _entryListCars.FirstOrDefault(x => x.CarIndex == carUpdate.CarIndex);
+                        if(carEntry == null || carEntry.Drivers.Count != carUpdate.DriverCount)
                         {
                             if ((DateTime.Now - lastEntrylistRequest).TotalSeconds > 1)
                             {
@@ -256,6 +248,7 @@ namespace ksBroadcastingNetwork
                         trackData.TrackName = ReadString(br);
                         trackData.TrackId = br.ReadInt32();
                         trackData.TrackMeters = br.ReadInt32();
+                        TrackMeters = trackData.TrackMeters > 0 ? trackData.TrackMeters : -1;
 
                         trackData.CameraSets = new Dictionary<string, List<string>>();
 
@@ -282,6 +275,20 @@ namespace ksBroadcastingNetwork
                         trackData.HUDPages = hudPages;
 
                         OnTrackDataUpdate?.Invoke(ConnectionIdentifier, trackData);
+                    }
+                    break;
+                case InboundMessageTypes.BROADCASTING_EVENT:
+                    {
+                        BroadcastingEvent evt = new BroadcastingEvent()
+                        {
+                            Type = (BroadcastingCarEventType)br.ReadByte(),
+                            Msg = ReadString(br),
+                            TimeMs = br.ReadInt32(),
+                            CarId = br.ReadInt32(),
+                        };
+
+                        evt.CarData = _entryListCars.FirstOrDefault(x => x.CarIndex == evt.CarId);
+                        OnBroadcastingEvent?.Invoke(ConnectionIdentifier, evt);
                     }
                     break;
                 default:

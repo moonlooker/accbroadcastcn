@@ -37,11 +37,7 @@
                   Grid.ColumnSpan="2" Grid.Row="1" Margin="1, 20, 1, 1">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:ClientConnectionView >
-                        <local:ClientConnectionView.InputBindings>
-                            <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Shutdown}"/>
-                        </local:ClientConnectionView.InputBindings>
-                    </local:ClientConnectionView>
+                    <local:ClientConnectionView />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

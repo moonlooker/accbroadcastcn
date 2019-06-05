@@ -45,6 +45,7 @@
     <Compile Include="BroadcastingEnums.cs" />
     <Compile Include="BroadcastingNetworkProtocol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structs\BroadcastingEvent.cs" />
     <Compile Include="Structs\CarInfo.cs" />
     <Compile Include="Structs\DriverInfo.cs" />
     <Compile Include="Structs\LapInfo.cs" />

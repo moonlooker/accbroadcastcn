@@ -62,19 +62,21 @@ namespace ksBroadcastingTestClient.Broadcasting
             if (update.Clouds < 0.2)
                 CloudInfo = "晴朗";//Sunny
             else if (update.Clouds < 0.40)
-                CloudInfo = "轻云";//Light clouds
+                CloudInfo = "少云";//Light clouds
             else if(update.Clouds < 0.65)
                 CloudInfo = "多云";//Cloudy
+            else if (update.Clouds < 0.90)
+                CloudInfo = "阴";//Cloudy
             else
-                CloudInfo = "World's end";//World's end
+                CloudInfo = "末日";//World's end
 
             TempInfo = $"{CloudInfo},环境温度:{update.AmbientTemp} °C ,赛道温度:{update.TrackTemp} °C";
 
 
             if (update.RainLevel < 0.1 && update.Wetness < 0.1)
-                RainInfo = $"晴天";//Clear
+                RainInfo = $"晴朗";//Clear
             else
-                RainInfo = $"{update.RainLevel:P0} 雨水等级, {update.Wetness:P0} 湿度";// rain wet
+                RainInfo = $"{update.RainLevel:P0} 降水等级, {update.Wetness:P0} 湿度";// rain wet
 
         }
 

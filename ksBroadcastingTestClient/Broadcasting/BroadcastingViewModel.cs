@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,6 +108,28 @@ namespace ksBroadcastingTestClient.Broadcasting
             foreach (var carVM in Cars)
             {
                 carVM.SetFocused(update.FocusedCarIndex);
+            }
+
+            try
+            {
+                if (TrackVM?.TrackMeters > 0)
+                {
+                    var sortedCars = Cars.OrderBy(x => x.SplinePosition).ToArray();
+                    for (int i = 1; i < sortedCars.Length; i++)
+                    {
+                        var carAhead = sortedCars[i - 1];
+                        var carBehind = sortedCars[i];
+                        var splineDistance = Math.Abs(carAhead.SplinePosition - carBehind.SplinePosition);
+                        while (splineDistance > 1f)
+                            splineDistance -= 1f;
+
+                        carBehind.GapFrontMeters = splineDistance * TrackVM.TrackMeters;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
         }
 

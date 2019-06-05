@@ -12,11 +12,9 @@ namespace ksBroadcastingNetwork.Structs
         public byte CarModelType { get; internal set; }
         public string TeamName { get; internal set; }
         public int RaceNumber { get; internal set; }
-        public string TeamCarName { get; internal set; }
-        public string DisplayName { get; internal set; }
         public byte CupCategory { get; internal set; }
-
-        public IEnumerable<DriverInfo> Drivers { get; } = new List<DriverInfo>();
+        public int CurrentDriverIndex { get; internal set; }
+        public IList<DriverInfo> Drivers { get; } = new List<DriverInfo>();
 
         public CarInfo(ushort carIndex)
         {
@@ -25,7 +23,7 @@ namespace ksBroadcastingNetwork.Structs
 
         internal void AddDriver(DriverInfo driverInfo)
         {
-            (Drivers as List<DriverInfo>).Add(driverInfo);
+            Drivers.Add(driverInfo);
         }
     }
 }

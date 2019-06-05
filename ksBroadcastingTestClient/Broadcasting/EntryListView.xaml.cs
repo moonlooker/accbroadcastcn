@@ -37,7 +37,7 @@ namespace ksBroadcastingTestClient.Broadcasting
             while (sorter != null)
             {
                 sorter?.View?.Refresh();
-                await Task.Delay(250);
+                await Task.Delay(1000);
             }
         }
     }

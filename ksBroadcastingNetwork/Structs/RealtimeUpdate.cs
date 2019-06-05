@@ -26,7 +26,6 @@ namespace ksBroadcastingNetwork.Structs
         public bool IsReplayPlaying { get; internal set; }
         public float ReplaySessionTime { get; internal set; }
         public float ReplayRemainingTime { get; internal set; }
-        public int ReplayFocusedCar { get; internal set; }
         public TimeSpan SessionRemainingTime { get; internal set; }
         public TimeSpan SessionEndTime { get; internal set; }
         public RaceSessionType SessionType { get; internal set; }

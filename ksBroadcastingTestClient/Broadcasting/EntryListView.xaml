@@ -6,7 +6,7 @@
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:local="clr-namespace:ksBroadcastingTestClient.Broadcasting"
         mc:Ignorable="d"
-        d:DesignHeight="450" d:DesignWidth="950"
+        d:DesignHeight="450" d:DesignWidth="970"
         Name="EntryListControl">
     <UserControl.Resources>
         <CollectionViewSource x:Key="src" Source="{Binding Cars}">
@@ -46,11 +46,11 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:LiveTimingCarViewModel Margin="0,10,0,0" >
-                            <local:LiveTimingCarViewModel.InputBindings>
+                        <local:LiveTimingCarView Margin="0,10,0,0" >
+                            <local:LiveTimingCarView.InputBindings>
                                 <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=EntryListControl, Path=DataContext.RequestFocusedCarCommand}" CommandParameter="{Binding}" />
-                            </local:LiveTimingCarViewModel.InputBindings>
-                        </local:LiveTimingCarViewModel>
+                            </local:LiveTimingCarView.InputBindings>
+                        </local:LiveTimingCarView>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

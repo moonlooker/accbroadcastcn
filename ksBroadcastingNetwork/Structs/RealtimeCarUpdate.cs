@@ -25,5 +25,6 @@ namespace ksBroadcastingNetwork.Structs
         public LapInfo CurrentLap { get; internal set; }
         public int Laps { get; internal set; }
         public ushort CupPosition { get; internal set; }
+        public byte DriverCount { get; internal set; }
     }
 }
