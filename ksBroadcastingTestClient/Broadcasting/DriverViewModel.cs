@@ -27,7 +27,7 @@ namespace ksBroadcastingTestClient.Broadcasting
             Category = driverUpdate.Category;
 
             var displayName = $"{FirstName} {LastName}".Trim();
-            if(displayName.Length > 35)
+            if (displayName.Length > 35)
                 displayName = $"{FirstName?.First()}. {LastName}".TrimStart('.').Trim();
             if (displayName.Length > 35)
                 displayName = $"{LastName}".Trim();

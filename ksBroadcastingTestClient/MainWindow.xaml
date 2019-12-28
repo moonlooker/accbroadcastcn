@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ksBroadcastingTestClient"
         mc:Ignorable="d"
-        Title="ACC broadcasting example implementation v3" Height="737.027" Width="1742.567" Closing="Window_Closing">
+        Title="ACC broadcasting example implementation v6" Height="737.027" Width="1742.567" Closing="Window_Closing">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
@@ -17,20 +17,20 @@
             <TabItem Header="直播控制面板">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="160"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="970"/>
-                        <ColumnDefinition Width="410"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="960"/>
+                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.RowSpan="2" >
+                    <ScrollViewer Grid.RowSpan="2">
                         <Broadcasting:EntryListView DataContext="{Binding BroadcastingVM}" />
                     </ScrollViewer>
-                    <Broadcasting:SessionInfoView DataContext="{Binding SessionInfoVM}" Grid.Column="1" />
-                    <Broadcasting:TrackCameraView DataContext="{Binding BroadcastingVM.TrackVM}"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" />
-                    <Broadcasting:ReplayControlView DataContext="{Binding ReplayVM}" Grid.Column="2" Grid.RowSpan="2" />
+                    <Broadcasting:SessionInfoView DataContext="{Binding SessionInfoVM}" Grid.Column="2" />
+                    <Broadcasting:TrackCameraView DataContext="{Binding BroadcastingVM.TrackVM}"  Grid.Column="2" Grid.Row="1" />
+                    <Broadcasting:ReplayControlView DataContext="{Binding ReplayVM}" Grid.Column="1" Grid.RowSpan="2" Margin="10,0" />
                 </Grid>
             </TabItem>
         </TabControl>

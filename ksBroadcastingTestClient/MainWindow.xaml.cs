@@ -31,5 +31,6 @@ namespace ksBroadcastingTestClient
             var mainVM = (DataContext as MainViewModel);
             mainVM?.OnCloseWindowCommand?.Execute(null);
         }
+
     }
 }

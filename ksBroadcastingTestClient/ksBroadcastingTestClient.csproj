@@ -63,7 +63,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Broadcasting\LiveTimingCarView.xaml">
+    <Page Include="Broadcasting\LiveTimingCarViewModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,8 +109,8 @@
     </Compile>
     <Compile Include="Broadcasting\HudPageViewModel.cs" />
     <Compile Include="Broadcasting\LapViewModel.cs" />
-    <Compile Include="Broadcasting\LiveTimingCarView.xaml.cs">
-      <DependentUpon>LiveTimingCarView.xaml</DependentUpon>
+    <Compile Include="Broadcasting\LiveTimingCarViewModel.xaml.cs">
+      <DependentUpon>LiveTimingCarViewModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Broadcasting\ReplayControlView.xaml.cs">
       <DependentUpon>ReplayControlView.xaml</DependentUpon>

@@ -16,12 +16,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <TextBlock Text="IP:" Margin="1" />
-            <TextBlock Text="端口:" Margin="1" />
-            <TextBlock Text="Display Name:" Margin="1" />
-            <TextBlock Text="连接密码:" Margin="1" />
+            <TextBlock Text="IP :" Margin="1" />
+            <TextBlock Text="端口 :" Margin="1" />
+            <TextBlock Text="Display Name :" Margin="1" />
+            <TextBlock Text="连接密码 :" Margin="1" />
             <TextBlock Text="刷新时间间隔(毫秒):" Margin="1" />
-            <TextBlock Text="命令执行密码:"  Margin="1" ToolTip="broadcasting.json配置的commandPassword"/>
+            <TextBlock Text="管理密码 :"  Margin="1" ToolTip="broadcasting.json配置的commandPassword"/>
             <Button Content="连接" Command="{Binding ConnectCmd}" Margin="1"/>
         </StackPanel>
         <StackPanel Grid.Column="1">

@@ -10,9 +10,9 @@
         <!-- Data -->
     <StackPanel Orientation="Horizontal" Background="{Binding RowBackground}">
         <TextBlock Width="50" Text="{Binding Position}" Style="{StaticResource RowSizedText}" FontWeight="Bold" Foreground="{Binding RowForeground}" />
-        <TextBlock Width="55" Text="{Binding RaceNumber, StringFormat={}#{0}}" Style="{StaticResource RowSizedText}" TextAlignment="Center" Foreground="{Binding RowForeground}" />
-        <TextBlock Width="50" Text="{Binding CurrentDriver.ShortName}" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
-        <StackPanel Width="130" Orientation="Vertical">
+        <TextBlock Width="55" Text="{Binding RaceNumber, StringFormat={}#{0}}" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
+        <TextBlock Width="55" Text="{Binding CurrentDriver.ShortName}" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
+        <StackPanel Width="140" Orientation="Vertical">
             <TextBlock Text="{Binding TeamName}" Style="{StaticResource HalfSizeText}" Foreground="{Binding RowForeground}" />
             <TextBlock Text="{Binding CurrentDriver.DisplayName}" Style="{StaticResource HalfSizeText}" FontWeight="Bold"  Foreground="{Binding RowForeground}" />
         </StackPanel>
@@ -64,7 +64,7 @@
         </StackPanel>
 
         <TextBlock Width="50" Text="{Binding Gear}" Style="{StaticResource RowSizedText}" TextAlignment="Center" Foreground="{Binding RowForeground}" />
-        <TextBlock Width="110" Text="{Binding Kmh}" TextAlignment="Center" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
+        <TextBlock Width="70" Text="{Binding Kmh}" TextAlignment="Center" Style="{StaticResource RowSizedText}" Foreground="{Binding RowForeground}" />
         
     </StackPanel>
 </UserControl>

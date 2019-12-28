@@ -7,25 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="160" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Phase:" HorizontalAlignment="Left" Margin="5,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding Phase}" HorizontalAlignment="Left" Margin="45,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="赛事阶段:" HorizontalAlignment="Left" Margin="149,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding SessionType}" HorizontalAlignment="Left" Margin="205,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="剩余时间:" HorizontalAlignment="Left" Margin="286,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding RemainingTime}" HorizontalAlignment="Left" Margin="340,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Phase :" HorizontalAlignment="Left" Margin="5,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding Phase}" HorizontalAlignment="Left" Margin="48,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="赛事阶段 :" HorizontalAlignment="Left" Margin="204,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.751,0.702" FontWeight="Bold"/>
+        <TextBlock Text="{Binding SessionType}" HorizontalAlignment="Left" Margin="264,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="剩余时间 :" HorizontalAlignment="Left" Margin="204,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Text="{Binding RemainingTime}" HorizontalAlignment="Left" Margin="264,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock Text="赛事进行时间:" HorizontalAlignment="Left" Margin="5,31,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding SessionTimeDisplay}" HorizontalAlignment="Left" Margin="85,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="赛事进行时间 :" HorizontalAlignment="Left" Margin="204,30,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Text="{Binding SessionTimeDisplay}" HorizontalAlignment="Left" Margin="288,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock Text="赛道:" HorizontalAlignment="Left" Margin="149,31,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding TrackDisplayName}" HorizontalAlignment="Left" Margin="180,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="赛道 :" HorizontalAlignment="Left" Margin="5,30,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Text="{Binding TrackDisplayName}" HorizontalAlignment="Left" Margin="38,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock Text="游戏内时间:" HorizontalAlignment="Left" Margin="5,50,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding TimeOfDayInfo}" HorizontalAlignment="Left" Margin="70,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="游戏内时间 :" HorizontalAlignment="Left" Margin="3,90,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Text="{Binding TimeOfDayInfo}" HorizontalAlignment="Left" Margin="74,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <TextBlock Text="天气:" HorizontalAlignment="Left" Margin="149,50,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding TempInfo}" TextAlignment="Right"  Margin="180,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock Text="降水:" HorizontalAlignment="Left" Margin="5,70,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding RainInfo}" TextAlignment="Right" HorizontalAlignment="Left" Margin="40,70,0,0" VerticalAlignment="Top"/>
+        <TextBlock Text="天气 :" HorizontalAlignment="Left" Margin="5,70,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-3.953,0.676" FontWeight="Bold"/>
+        <TextBlock Text="{Binding TempInfo}" TextAlignment="Right"  Margin="40,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text="雨水 :" HorizontalAlignment="Left" Margin="5,50,0,0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Text="{Binding RainInfo}" TextAlignment="Right" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

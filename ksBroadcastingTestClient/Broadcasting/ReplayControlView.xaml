@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ksBroadcastingTestClient.Broadcasting"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Width="400">
+             d:DesignHeight="450" Width="340">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -18,16 +18,16 @@
                 <Button Content="-10s" Command="{Binding PlayLiveReplay}" CommandParameter="10" Width="100" Height="28" Canvas.Left="10" Canvas.Top="21"/>
                 <Button Content="-30s" Command="{Binding PlayLiveReplay}" CommandParameter="30" Width="100" Height="28" Canvas.Left="116" Canvas.Top="21"/>
                 <Button Content="-1m"  Command="{Binding PlayLiveReplay}" CommandParameter="60" Width="100" Height="28" Canvas.Left="221" Canvas.Top="21"/>
-                <TextBlock Text="自定义:"  Height="28" Canvas.Left="20" Canvas.Top="65" RenderTransformOrigin="0.513,0.879"/>
-                <TextBox x:Name="txtPlayBeforeSeconds" Text="120" Width="40" TextAlignment="Right" Height="21" Canvas.Left="72" Canvas.Top="64" RenderTransformOrigin="1.321,1.998" />
+                <TextBlock Text="自定义:"  Height="28" Canvas.Left="10" Canvas.Top="65" RenderTransformOrigin="0.513,0.879"/>
+                <TextBox x:Name="txtPlayBeforeSeconds" Text="120" Width="52" TextAlignment="Right" Height="21" Canvas.Left="65" Canvas.Top="64" RenderTransformOrigin="1.321,1.998" />
                 <!--<TextBlock Text="min, duration:" Height="28" Canvas.Left="117" Canvas.Top="65" />
                 <TextBox Text="120" Width="40" TextAlignment="Right" Height="20" RenderTransformOrigin="0.483,3.466" Canvas.Left="202" Canvas.Top="64" />-->
-                <TextBlock Text="s" Height="28" Canvas.Left="120" Canvas.Top="64" />
-                <Button Content="开始回放" Command="{Binding PlayLiveReplay}" CommandParameter="{Binding Text, ElementName=txtPlayBeforeSeconds}" Width="100" Height="28" Canvas.Left="140" Canvas.Top="59" />
+                <TextBlock Text="s" Height="28" Canvas.Left="122" Canvas.Top="65" />
+                <Button Content="开始回放" Command="{Binding PlayLiveReplay}" CommandParameter="{Binding Text, ElementName=txtPlayBeforeSeconds}" Width="100" Height="28" Canvas.Left="157" Canvas.Top="59" />
             </Canvas>
         </GroupBox>
         <!-- Event List -->
-        <GroupBox Header="Highlights" Grid.Column="1" Grid.Row="1">
+        <GroupBox Header="Highlights" Grid.Column="0" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding BroadcastingEvents}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

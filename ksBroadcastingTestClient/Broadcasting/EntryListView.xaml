@@ -6,7 +6,7 @@
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:local="clr-namespace:ksBroadcastingTestClient.Broadcasting"
         mc:Ignorable="d"
-        d:DesignHeight="450" d:DesignWidth="970"
+        d:DesignHeight="900" d:DesignWidth="950"
         Name="EntryListControl">
     <UserControl.Resources>
         <CollectionViewSource x:Key="src" Source="{Binding Cars}">
@@ -16,25 +16,21 @@
         </CollectionViewSource>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-
-        </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
             <!-- Header -->
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="50" Text="排位" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Session Position/Rank" />
                 <TextBlock Width="55" Text="车号" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car number" />
-                <TextBlock Width="50" Text="简称" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Driver short name" />
-                <TextBlock Width="130" Text="车队/车手" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Team + Driver name" />
+                <TextBlock Width="55" Text="简称" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Driver short name" />
+                <TextBlock Width="140" Text="车队/车手" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Team + Driver name" />
                 <TextBlock Width="50" Text="圈数" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Laps completed" />
                 <TextBlock Width="50" Text="位置" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Location hints: PEn = PitEntry, PLa = PitLane, PEx = PitExit, OUT = Outlap, IN = Inlap" />
                 <TextBlock Width="121" Text="最快圈差距" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Delta to best lap" />
                 <TextBlock Width="98" Text="当前时间" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Current laptime, splits, in/outlap hint" />
                 <TextBlock Width="90" Text="最后圈速" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Driver's last laptime, splits, in/outlap hint" />
                 <TextBlock Width="103" Text="最快圈速" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
-                <TextBlock Width="50" Text="档位" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
-                <TextBlock Width="110" Text="时速(Km/h)" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="Car's best laptime, splits, in/outlap hint" />
+                <TextBlock Width="50" Text="档位" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="" />
+                <TextBlock Width="70" Text="时速" Style="{StaticResource RowSizedText}" TextAlignment="Center" ToolTip="" />
             </StackPanel>
 
             <ItemsControl Name="listViewCars" ItemsSource="{Binding Source={StaticResource src}}">
@@ -46,13 +42,14 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:LiveTimingCarView Margin="0,10,0,0" >
-                            <local:LiveTimingCarView.InputBindings>
+                        <local:LiveTimingCarViewModel Margin="0,10,0,0" >
+                            <local:LiveTimingCarViewModel.InputBindings>
                                 <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=EntryListControl, Path=DataContext.RequestFocusedCarCommand}" CommandParameter="{Binding}" />
-                            </local:LiveTimingCarView.InputBindings>
-                        </local:LiveTimingCarView>
+                            </local:LiveTimingCarViewModel.InputBindings>
+                        </local:LiveTimingCarViewModel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
+                
             </ItemsControl>
         </StackPanel>
     </Grid>

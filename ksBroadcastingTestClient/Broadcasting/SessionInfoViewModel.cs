@@ -57,7 +57,7 @@ namespace ksBroadcastingTestClient.Broadcasting
             Phase = update.Phase;
             SessionType = update.SessionType;
 
-            TimeOfDayInfo = update.TimeOfDay.ToString("hh\\:mm");
+            TimeOfDayInfo = update.TimeOfDay.ToString();
 
             if (update.Clouds < 0.2)
                 CloudInfo = "晴朗";//Sunny
@@ -74,7 +74,7 @@ namespace ksBroadcastingTestClient.Broadcasting
 
 
             if (update.RainLevel < 0.1 && update.Wetness < 0.1)
-                RainInfo = $"无";//Clear
+                RainInfo = $"无降水";//Clear
             else
                 RainInfo = $"{update.RainLevel:P0} 降水等级, {update.Wetness:P0} 湿度";// rain wet
 
